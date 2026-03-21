@@ -21,14 +21,7 @@ html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--violet); overflow-x: hidden; }
 
 /* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 4rem;
-  background: rgba(255,249,239,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(105,76,208,0.1);
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(255,249,239,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(105,76,208,0.1); }
 .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--violet); text-decoration: none; }
 .nav-logo span { color: var(--purple); }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
@@ -110,28 +103,72 @@ nav {
 /* HOWTO */
 .howto { padding: 7rem 4rem; background: var(--cream); }
 .howto-inner { max-width: 1100px; margin: 0 auto; }
-.howto-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.howto-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 5rem; }
 .howto-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; color: var(--violet); }
 .howto-headline em { font-style: italic; color: var(--purple); }
 .howto-desc { font-size: 1rem; color: var(--violet); opacity: 0.6; line-height: 1.7; padding-top: 1rem; }
-.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-.feature-card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid rgba(52,31,96,0.06); box-shadow: 0 4px 24px rgba(52,31,96,0.06); transition: all 0.3s; }
-.feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(52,31,96,0.12); }
-.feature-card.highlighted { background: var(--violet); border-color: transparent; grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-.feature-icon { width: 48px; height: 48px; background: var(--lavender); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
-.highlighted .feature-icon { background: rgba(105,76,208,0.4); }
-.feature-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--violet); margin-bottom: 0.6rem; line-height: 1.2; }
-.highlighted h3 { color: var(--cream); }
-.feature-card p { font-size: 0.875rem; color: var(--violet); opacity: 0.6; line-height: 1.65; }
-.highlighted p { color: var(--lavender); opacity: 0.85; }
-.feature-badge { display: inline-block; background: rgba(244,206,69,0.2); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
-.highlighted .feature-badge { background: rgba(244,206,69,0.25); color: var(--yellow); }
-.feature-visual { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 1.25rem; }
-.wa-preview { display: flex; flex-direction: column; gap: 0.6rem; }
-.wa-bubble { background: #DCF8C6; border-radius: 12px 12px 4px 12px; padding: 0.6rem 0.9rem; font-size: 0.8rem; color: #1a1a1a; max-width: 85%; align-self: flex-end; line-height: 1.4; }
-.wa-bubble.incoming { background: white; border-radius: 12px 12px 12px 4px; align-self: flex-start; }
-.wa-btn-row { display: flex; gap: 0.4rem; }
-.wa-reply-btn { flex: 1; background: white; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 0.4rem; font-size: 0.7rem; font-weight: 600; color: #128C7E; text-align: center; font-family: 'Syne', sans-serif; }
+
+/* FEATURES — lista editorial */
+.features-grid { display: flex; flex-direction: column; }
+
+.feature-card {
+  display: grid;
+  grid-template-columns: 6rem 1fr auto;
+  align-items: center;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(52,31,96,0.1);
+  cursor: default;
+  transition: all 0.2s;
+}
+.feature-card:last-child { border-bottom: 1px solid rgba(52,31,96,0.1); }
+.feature-card:hover { padding-left: 1rem; }
+
+.feature-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3rem;
+  font-style: italic;
+  color: var(--violet);
+  opacity: 0.12;
+  line-height: 1;
+  text-align: right;
+  transition: opacity 0.2s, color 0.2s;
+}
+.feature-card:hover .feature-num { opacity: 0.6; color: var(--purple); }
+
+.feature-card-body { flex: 1; }
+
+.feature-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: var(--violet);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+.feature-card:hover .feature-card-title { color: var(--purple); }
+
+.feature-card-text {
+  font-size: 0.95rem;
+  color: var(--violet);
+  opacity: 0.5;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.feature-card-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  background: var(--lavender);
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
 /* STATS */
 .stats { background: var(--yellow); padding: 3.5rem 4rem; }
@@ -223,8 +260,10 @@ footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items
   .pain-grid { grid-template-columns: 1fr; }
   .howto { padding: 4rem 1.5rem; }
   .howto-header { grid-template-columns: 1fr; gap: 1rem; }
-  .features-grid { grid-template-columns: 1fr; }
-  .feature-card.highlighted { grid-column: auto; display: block; }
+  .feature-card { grid-template-columns: 3.5rem 1fr; gap: 1.25rem; padding: 2rem 0; }
+  .feature-card:hover { padding-left: 0; }
+  .feature-num { font-size: 2rem; text-align: left; }
+  .feature-card-tag { display: none; }
   .stats { padding: 3rem 1.5rem; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .pricing { padding: 4rem 1.5rem; }
@@ -323,28 +362,43 @@ footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items
       <p class="howto-desc">No es otro software complejo. Es la herramienta que trabaja por ti para que tú solo tengas que hacer tu trabajo.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">📅</div><h3>Agenda inteligente</h3><p>Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Crea nuevas en segundos. Todo en tiempo real, desde el móvil o el ordenador.</p></div>
-      <div class="feature-card"><div class="feature-icon">👥</div><h3>Historial de clientes</h3><p>Knöa recuerda por ti quién es quién. Historial completo, comportamiento pasado y alertas automáticas si un cliente tiene tendencia a no aparecer.</p></div>
-      <div class="feature-card highlighted">
-        <div>
-          <div class="feature-badge">★ La más potente</div>
-          <div class="feature-icon">💬</div>
-          <h3>Recordatorios automáticos por WhatsApp</h3>
-          <p>Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante. Sin llamadas, sin perseguir a nadie.</p>
+
+      <div class="feature-card">
+        <span class="feature-num">01</span>
+        <div class="feature-card-body">
+          <div class="feature-card-title">Recordatorios automáticos por WhatsApp</div>
+          <div class="feature-card-text">Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante. Sin llamadas, sin perseguir a nadie.</div>
         </div>
-        <div class="feature-visual">
-          <div class="wa-preview">
-            <div class="wa-bubble incoming">Knöa · Tu cita con <strong>Laura</strong> el martes 18 a las 09:00h ✂️ ¿Confirmas?</div>
-            <div class="wa-btn-row"><div class="wa-reply-btn">✓ Sí, confirmo</div><div class="wa-reply-btn">✕ Cancelar</div></div>
-            <div class="wa-bubble">¡Perfecto! Hasta el martes 😊</div>
-          </div>
-        </div>
+        <span class="feature-card-tag">El diferencial</span>
       </div>
-      <div class="feature-card"><div class="feature-icon">🔗</div><h3>Reserva online</h3><p>Comparte tu enlace y tus clientes eligen fecha y hora por su cuenta. Tú decides si confirmas o se confirma automáticamente.</p></div>
-      <div class="feature-card"><div class="feature-icon">💳</div><h3>Depósito anticipado</h3><p>Si lo activas, el cliente paga antes de confirmar. Sin pago, sin cita. El hueco solo se bloquea cuando hay compromiso real.</p></div>
-      <div class="feature-card"><div class="feature-icon">📈</div><h3>Estadísticas claras</h3><p>Ingresos, ocupación, servicios más populares, clientes más fieles. Todo calculado automáticamente, sin que tengas que hacer nada.</p></div>
-      <div class="feature-card"><div class="feature-icon">📶</div><h3>Funciona sin internet</h3><p>Si se va la conexión, sigues trabajando. Las citas se guardan y se sincronizan automáticamente cuando vuelve la señal.</p></div>
-      <div class="feature-card"><div class="feature-icon">📲</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu móvil, en dos toques, Knöa se instala en tu pantalla de inicio como una app más.</p></div>
+
+      <div class="feature-card">
+        <span class="feature-num">02</span>
+        <div class="feature-card-body">
+          <div class="feature-card-title">Detección de clientes de riesgo</div>
+          <div class="feature-card-text">Knöa analiza el historial de cada cliente y te avisa antes de confirmar una cita con alguien que tiene tendencia a no aparecer. Lo sabes antes de que sea tarde.</div>
+        </div>
+        <span class="feature-card-tag">Solo en Knöa</span>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-num">03</span>
+        <div class="feature-card-body">
+          <div class="feature-card-title">Agenda inteligente en tiempo real</div>
+          <div class="feature-card-text">Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Funciona desde el móvil, la tablet o el ordenador. Y sin internet si hace falta.</div>
+        </div>
+        <span class="feature-card-tag">El núcleo</span>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-num">04</span>
+        <div class="feature-card-body">
+          <div class="feature-card-title">Reserva online y depósito anticipado</div>
+          <div class="feature-card-text">Comparte tu enlace y tus clientes se agendan solos. Activa el depósito anticipado y el hueco solo se bloquea cuando hay compromiso real. Sin pago, sin cita.</div>
+        </div>
+        <span class="feature-card-tag">Opcional</span>
+      </div>
+
     </div>
   </div>
 </section>
