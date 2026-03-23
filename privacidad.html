@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacidad &mdash; Kn&ouml;a</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+function toggleMenu() {
+  var m = document.getElementById("mob");
+  var b = document.getElementById("hbg");
+  m.classList.toggle("open");
+  b.classList.toggle("open");
+  document.body.style.overflow = m.classList.contains("open") ? "hidden" : "";
+}
+function closeMenu() {
+  document.getElementById("mob").classList.remove("open");
+  document.getElementById("hbg").classList.remove("open");
+  document.body.style.overflow = "";
+}
+</script>
+<style>
+:root {
+  --purple: #694CD0;
+  --violet: #341F60;
+  --yellow: #F4CE45;
+  --lavender: #E1C3FF;
+  --cream: #FFF9EF;
+  --dark: #1a0f30;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: "DM Sans", sans-serif; background: var(--cream); color: var(--violet); overflow-x: hidden; width: 100%; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(255,249,239,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(105,76,208,0.1);
+}
+.logo { font-family: "DM Serif Display", serif; font-size: 1.75rem; color: var(--violet); text-decoration: none; }
+.logo span { color: var(--purple); }
+.nav-back { font-family: "Syne", sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--violet); text-decoration: none; opacity: 0.5; transition: opacity 0.2s; }
+.nav-back:hover { opacity: 1; }
+.hbg { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 6px; }
+.hbg span { display: block; width: 24px; height: 2px; background: var(--violet); border-radius: 2px; transition: all 0.3s; }
+.hbg.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hbg.open span:nth-child(2) { opacity: 0; }
+.hbg.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mob {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--cream); z-index: 300;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+.mob.open { display: flex; }
+.mob a { font-family: "DM Serif Display", serif; font-size: 2.2rem; color: var(--violet); text-decoration: none; }
+.mob-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--violet); line-height: 1; }
+.mob-cta { background: var(--violet) !important; color: var(--cream) !important; font-family: "Syne", sans-serif !important; font-size: 1rem !important; font-weight: 700 !important; padding: 1rem 2.5rem !important; border-radius: 100px !important; }
+.legal-wrap { max-width: 760px; margin: 0 auto; padding: 8rem 2rem 6rem; }
+.legal-label { font-family: "Syne", sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+.legal-label::before { content: ""; width: 24px; height: 2px; background: currentColor; }
+.legal-h1 { font-family: "DM Serif Display", serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--violet); line-height: 1.1; margin-bottom: 1rem; }
+.legal-intro { font-size: 1rem; color: var(--violet); opacity: 0.6; line-height: 1.7; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(52,31,96,0.1); }
+.legal-updated { font-family: "Syne", sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--violet); opacity: 0.35; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.legal-section { margin-bottom: 2.5rem; }
+.legal-section h2 { font-family: "DM Serif Display", serif; font-size: 1.25rem; color: var(--violet); margin-bottom: 0.75rem; line-height: 1.2; }
+.legal-section p { font-size: 0.9rem; color: var(--violet); opacity: 0.7; line-height: 1.75; margin-bottom: 0.6rem; }
+.legal-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.6rem; }
+.legal-section ul li { font-size: 0.9rem; color: var(--violet); opacity: 0.7; line-height: 1.7; padding-left: 1.25rem; position: relative; }
+.legal-section ul li::before { content: "&#8212;"; position: absolute; left: 0; opacity: 0.4; }
+.placeholder { background: rgba(244,206,69,0.25); color: var(--violet); padding: 0.1rem 0.4rem; border-radius: 4px; font-family: "Syne", sans-serif; font-size: 0.8em; font-weight: 700; }
+footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
+.foot-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.foot-logo { font-family: "DM Serif Display", serif; font-size: 1.5rem; color: var(--cream); opacity: 0.7; }
+.foot-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.foot-links a { font-family: "Syne", sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); opacity: 0.35; text-decoration: none; transition: opacity 0.2s; }
+.foot-links a:hover { opacity: 0.7; }
+.foot-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.foot-copy { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: "Syne", sans-serif; }
+.foot-legal { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: "Syne", sans-serif; }
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-back { display: none; }
+  .hbg { display: flex; }
+  .legal-wrap { padding: 6rem 1.25rem 4rem; }
+  footer { padding: 2rem 1.25rem; }
+  .foot-top { flex-direction: column; align-items: flex-start; }
+  .foot-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="mob" id="mob">
+  <button class="mob-close" onclick="closeMenu()">&#10005;</button>
+  <a href="index.html" onclick="closeMenu()">Inicio</a>
+  <a href="index.html#precios" onclick="closeMenu()">Precios</a>
+</div>
+<nav>
+  <a href="index.html" class="logo">Kn<span>&ouml;</span>a</a>
+  <a href="index.html" class="nav-back">&#8592; Volver</a>
+  <button class="hbg" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="legal-wrap">
+  <div class="legal-updated">Pendiente de revisar con datos definitivos</div>
+  <div class="legal-label">Privacidad</div>
+  <h1 class="legal-h1">Pol&iacute;tica de privacidad</h1>
+  <p class="legal-intro">Aqu&iacute; explicamos qu&eacute; datos recogemos, para qu&eacute; los usamos y qu&eacute; derechos tienes sobre ellos.</p>
+
+  <div class="legal-section">
+    <h2>Responsable del tratamiento</h2>
+    <p>Titular: <span class="placeholder">[Nombre o raz&oacute;n social]</span></p>
+    <p>CIF / NIF: <span class="placeholder">[CIF o NIF]</span></p>
+    <p>Email: hola&#64;helloknoa.com</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>Datos que recogemos</h2>
+    <ul>
+      <li>Datos de registro: nombre, email y contrase&ntilde;a al crear una cuenta.</li>
+      <li>Datos de uso: informaci&oacute;n sobre c&oacute;mo se usa la plataforma para mejorar el servicio.</li>
+      <li>Datos de contacto: los que facilitas al escribirnos por email o formulario.</li>
+      <li>Datos t&eacute;cnicos: direcci&oacute;n IP, tipo de navegador y dispositivo. <span class="placeholder">[Revisar con equipo t&eacute;cnico]</span></li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>Finalidades</h2>
+    <ul>
+      <li>Prestar el servicio contratado.</li>
+      <li>Gestionar el acceso a la cuenta y la facturaci&oacute;n.</li>
+      <li>Responder a consultas y solicitudes de soporte.</li>
+      <li>Mejorar la plataforma a partir del uso an&oacute;nimo agregado.</li>
+      <li>Comunicaciones sobre el servicio cuando sean necesarias.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>Base legal</h2>
+    <ul>
+      <li>Ejecuci&oacute;n del contrato de servicio para los datos de cuenta y uso.</li>
+      <li>Inter&eacute;s leg&iacute;timo para la mejora del servicio.</li>
+      <li>Consentimiento para comunicaciones comerciales, si aplica.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>Conservaci&oacute;n</h2>
+    <p>Los datos se conservan mientras la cuenta est&eacute; activa y durante el plazo legalmente exigible tras su cancelaci&oacute;n. <span class="placeholder">[Concretar plazos con asesor&iacute;a]</span></p>
+  </div>
+
+  <div class="legal-section">
+    <h2>Destinatarios y proveedores</h2>
+    <p>Los datos pueden ser tratados por proveedores tecnol&oacute;gicos necesarios para el funcionamiento del servicio, bajo contrato de encargo de tratamiento:</p>
+    <ul>
+      <li>Supabase (base de datos y autenticaci&oacute;n)</li>
+      <li>Vercel (infraestructura de alojamiento)</li>
+      <li><span class="placeholder">[A&ntilde;adir proveedor de WhatsApp / mensajes]</span></li>
+      <li><span class="placeholder">[A&ntilde;adir proveedor de pagos si aplica]</span></li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>Derechos del usuario</h2>
+    <p>Puedes ejercer tus derechos de acceso, rectificaci&oacute;n, supresi&oacute;n, portabilidad, limitaci&oacute;n y oposici&oacute;n escribiendo a hola&#64;helloknoa.com.</p>
+    <p>Si consideras que el tratamiento no es correcto, puedes reclamar ante la Agencia Espa&ntilde;ola de Protecci&oacute;n de Datos (aepd.es).</p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-logo">Kn&ouml;a</div>
+    <div class="foot-links">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="terminos.html">T&eacute;rminos</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="foot-copy">&copy; 2025 Kn&ouml;a</span>
+    <span class="foot-legal">hola&#64;helloknoa.com</span>
+  </div>
+</footer>
+</body>
+</html>
