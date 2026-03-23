@@ -147,12 +147,12 @@ nav {
 .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 .card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid rgba(52,31,96,0.06); box-shadow: 0 4px 24px rgba(52,31,96,0.06); transition: all 0.3s; }
 .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(52,31,96,0.12); }
-.card-icon { width: 48px; height: 48px; background: var(--lavender); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+.card-icon { font-family: 'DM Serif Display', serif; font-size: 2.2rem; font-style: italic; color: var(--yellow); line-height: 1; margin-bottom: 1.2rem; opacity: 0.9; }
 .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--violet); margin-bottom: 0.6rem; line-height: 1.2; }
 .card p { font-size: 0.875rem; color: var(--violet); opacity: 0.6; line-height: 1.65; }
 .card-highlight { background: var(--violet); border-color: transparent; grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
 .card-highlight:hover { transform: translateY(-4px); }
-.card-highlight .card-icon { background: rgba(105,76,208,0.4); }
+.card-highlight .card-icon { color: var(--yellow); }
 .card-highlight h3 { color: var(--cream); }
 .card-highlight p { color: var(--lavender); opacity: 0.85; }
 .card-badge { display: inline-block; background: rgba(244,206,69,0.25); color: var(--yellow); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
@@ -256,6 +256,18 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
 .foot-copy { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: 'Syne', sans-serif; }
 .foot-legal { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: 'Syne', sans-serif; }
 
+/* ── FAQ ── */
+.faq { padding: 6rem 4rem; background: white; border-top: 1px solid rgba(52,31,96,0.06); width: 100%; }
+.faq-inner { max-width: 1100px; margin: 0 auto; }
+.faq-hd { margin-bottom: 3.5rem; }
+.faq-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--violet); line-height: 1.15; margin-bottom: 0.5rem; }
+.faq-sub { font-size: 0.9rem; color: var(--violet); opacity: 0.45; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.04em; }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.faq-item { padding: 1.75rem 2rem 1.75rem 0; border-top: 1px solid rgba(52,31,96,0.08); }
+.faq-item:nth-child(even) { padding-left: 2rem; padding-right: 0; border-left: 1px solid rgba(52,31,96,0.08); }
+.faq-q { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--violet); margin-bottom: 0.6rem; line-height: 1.3; }
+.faq-a { font-size: 0.875rem; color: var(--violet); opacity: 0.75; line-height: 1.65; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1rem 1.25rem; }
@@ -288,6 +300,10 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
   .testi-grid { grid-template-columns: 1fr; }
 
   .cta { padding: 5rem 1.25rem; }
+
+  .faq { padding: 4rem 1.25rem; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-item:nth-child(even) { padding-left: 0; border-left: none; }
 
   .contacto { padding: 4rem 1.25rem; }
   .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -389,26 +405,26 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
       <p class="features-desc">No es otro software complejo. Es la herramienta que trabaja por ti para que tú solo tengas que hacer tu trabajo.</p>
     </div>
     <div class="cards">
-      <div class="card"><div class="card-icon">📅</div><h3>Agenda inteligente</h3><p>Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Crea nuevas en segundos desde el móvil o el ordenador.</p></div>
-      <div class="card"><div class="card-icon">👥</div><h3>Historial de clientes</h3><p>Historial completo, comportamiento pasado y alertas automáticas si un cliente tiene tendencia a no aparecer.</p></div>
+      <div class="card"><div class="card-icon">01</div><h3>Agenda inteligente</h3><p>Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Crea nuevas en segundos desde el móvil o el ordenador.</p></div>
+      <div class="card"><div class="card-icon">02</div><h3>Historial de clientes</h3><p>Historial completo, comportamiento pasado y alertas automáticas si un cliente tiene tendencia a no aparecer.</p></div>
       <div class="card card-highlight">
         <div>
           <div class="card-badge">★ La más potente</div>
-          <div class="card-icon">💬</div>
+          <div class="card-icon">03</div>
           <h3>Recordatorios automáticos por WhatsApp</h3>
           <p>Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante.</p>
         </div>
         <div class="wa-demo">
-          <div class="wa-b in">Tu cita con <strong>Laura</strong> el martes a las 09:00h ✂️ ¿Confirmas?</div>
+          <div class="wa-b in">Tu cita con <strong>Laura</strong> el martes a las 09:00h &#9986;&#65039; ¿Confirmas?</div>
           <div class="wa-btns-demo"><div class="wa-btn-demo">✓ Sí, confirmo</div><div class="wa-btn-demo">✕ Cancelar</div></div>
-          <div class="wa-b">¡Perfecto! Hasta el martes 😊</div>
+          <div class="wa-b">¡Perfecto! Hasta el martes</div>
         </div>
       </div>
-      <div class="card"><div class="card-icon">🔗</div><h3>Reserva online</h3><p>Comparte tu enlace y tus clientes eligen fecha y hora por su cuenta. Tú decides si confirmas o se confirma automáticamente.</p></div>
-      <div class="card"><div class="card-icon">💳</div><h3>Depósito anticipado</h3><p>Si lo activas, el cliente paga antes de confirmar. Sin pago, sin cita. El hueco solo se bloquea cuando hay compromiso real.</p></div>
-      <div class="card"><div class="card-icon">📈</div><h3>Estadísticas claras</h3><p>Ingresos, ocupación, servicios más populares, clientes más fieles. Todo calculado automáticamente.</p></div>
-      <div class="card"><div class="card-icon">📶</div><h3>Funciona sin internet</h3><p>Si se va la conexión, sigues trabajando. Las citas se guardan y se sincronizan cuando vuelve la señal.</p></div>
-      <div class="card"><div class="card-icon">📲</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu móvil, en dos toques, Knöa se instala en tu pantalla de inicio.</p></div>
+      <div class="card"><div class="card-icon">04</div><h3>Reserva online</h3><p>Comparte tu enlace y tus clientes eligen fecha y hora por su cuenta. Tú decides si confirmas o se confirma automáticamente.</p></div>
+      <div class="card"><div class="card-icon">05</div><h3>Depósito anticipado</h3><p>Si lo activas, el cliente paga antes de confirmar. Sin pago, sin cita. El hueco solo se bloquea cuando hay compromiso real.</p></div>
+      <div class="card"><div class="card-icon">06</div><h3>Estadísticas claras</h3><p>Ingresos, ocupación, servicios más populares, clientes más fieles. Todo calculado automáticamente.</p></div>
+      <div class="card"><div class="card-icon">07</div><h3>Funciona sin internet</h3><p>Si se va la conexión, sigues trabajando. Las citas se guardan y se sincronizan cuando vuelve la señal.</p></div>
+      <div class="card"><div class="card-icon">08</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu móvil, en dos toques, Knöa se instala en tu pantalla de inicio.</p></div>
     </div>
   </div>
 </section>
@@ -465,6 +481,42 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
         </ul>
         <a href="/cdn-cgi/l/email-protection#e1898e8d80a18a8f8e80cf809191" class="btn-plan btn-vio">Hablamos →</a>
         <div class="plan-trial">Cuéntanos qué necesitas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="faq-hd">
+      <h2 class="faq-h2">Antes de empezar, esto suele ser lo primero.</h2>
+      <p class="faq-sub">Sin letra pequeña. Sin vueltas.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <p class="faq-q">&#191;Necesito tarjeta para empezar?</p>
+        <p class="faq-a">No. Puedes probar Kn&#246;a durante 14 d&#237;as sin tarjeta.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">&#191;Puedo cancelar cuando quiera?</p>
+        <p class="faq-a">S&#237;. Sin permanencia. Si no encaja, paras y listo.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">&#191;Cu&#225;nto se tarda en empezar?</p>
+        <p class="faq-a">Lo normal es tenerlo en marcha en menos de un d&#237;a. Sin instalaciones y sin montar nada desde cero.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">&#191;Qu&#233; pasa si supero los mensajes incluidos?</p>
+        <p class="faq-a">No se corta nada. Simplemente se aplica el coste extra indicado en el plan.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">&#191;Sirve para mi tipo de negocio?</p>
+        <p class="faq-a">Kn&#246;a est&#225; pensado para negocios que trabajan con citas: peluquer&#237;a, est&#233;tica, fisio, tattoo, entrenamiento y servicios parecidos.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">&#191;Hay soporte durante la prueba?</p>
+        <p class="faq-a">S&#237;. Si tienes dudas al empezar o quieres ver c&#243;mo encaja en tu forma de trabajar, escr&#237;benos y te ayudamos.</p>
       </div>
     </div>
   </div>
