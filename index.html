@@ -165,8 +165,8 @@ nav {
 /* ── STATS ── */
 .stats { background: var(--yellow); padding: 3.5rem 4rem; width: 100%; }
 .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-.stat-n { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--violet); line-height: 1; margin-bottom: 0.4rem; }
-.stat-l { font-size: 0.82rem; color: var(--violet); opacity: 0.65; line-height: 1.4; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.stat-n { font-family: 'DM Serif Display', serif; font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--violet); line-height: 1.2; margin-bottom: 0.4rem; }
+.stat-l { font-size: 0.78rem; color: var(--violet); opacity: 0.5; line-height: 1.4; font-family: 'Syne', sans-serif; font-weight: 500; letter-spacing: 0.02em; text-transform: none; }
 
 /* ── PRICING ── */
 .pricing { padding: 7rem 4rem; background: white; width: 100%; }
@@ -429,10 +429,10 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
 <!-- STATS -->
 <section class="stats">
   <div class="stats-inner">
-    <div><div class="stat-n">&#8595;</div><div class="stat-l">Menos citas que se pierden sin aviso</div></div>
-    <div><div class="stat-n">&#8595;</div><div class="stat-l">Menos tiempo perdido en gesti&#243;n</div></div>
-    <div><div class="stat-n">14</div><div class="stat-l">d&#237;as de prueba gratis, sin tarjeta</div></div>
-    <div><div class="stat-n">&lt; 1d</div><div class="stat-l">para tenerlo en marcha desde cero</div></div>
+    <div><div class="stat-n">Menos citas perdidas</div><div class="stat-l">sin avisos de &#250;ltima hora</div></div>
+    <div><div class="stat-n">Menos tiempo en gesti&#243;n</div><div class="stat-l">menos mensajes, menos llamadas</div></div>
+    <div><div class="stat-n">14 d&#237;as</div><div class="stat-l">de prueba gratis, sin tarjeta</div></div>
+    <div><div class="stat-n">En menos de 1 d&#237;a</div><div class="stat-l">para tenerlo en marcha</div></div>
   </div>
 </section>
 
