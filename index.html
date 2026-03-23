@@ -155,7 +155,7 @@ nav {
 .card-highlight .card-icon { color: var(--yellow); }
 .card-highlight h3 { color: var(--cream); }
 .card-highlight p { color: var(--lavender); opacity: 0.85; }
-.card-badge { display: inline-block; background: rgba(244,206,69,0.25); color: var(--yellow); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.card-badge { display: inline-block; background: rgba(244,206,69,0.25); color: var(--yellow); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
 .wa-demo { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
 .wa-b { padding: 0.6rem 0.9rem; font-size: 0.8rem; color: #1a1a1a; max-width: 85%; line-height: 1.4; border-radius: 12px 12px 4px 12px; background: #DCF8C6; align-self: flex-end; }
 .wa-b.in { background: white; border-radius: 12px 12px 12px 4px; align-self: flex-start; }
@@ -402,29 +402,29 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
         <div class="label label-dark">Qué hace Knöa</div>
         <h2 class="features-h2">Todo en un sitio.<br>Todo <em>automático.</em></h2>
       </div>
-      <p class="features-desc">No es otro software complejo. Es la herramienta que trabaja por ti para que tú solo tengas que hacer tu trabajo.</p>
+      <p class="features-desc">Kn&#246;a pone orden en la agenda, confirma citas y te avisa antes de que un hueco se pierda.</p>
     </div>
     <div class="cards">
-      <div class="card"><div class="card-icon">01</div><h3>Agenda inteligente</h3><p>Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Crea nuevas en segundos desde el móvil o el ordenador.</p></div>
-      <div class="card"><div class="card-icon">02</div><h3>Historial de clientes</h3><p>Historial completo, comportamiento pasado y alertas automáticas si un cliente tiene tendencia a no aparecer.</p></div>
       <div class="card card-highlight">
         <div>
-          <div class="card-badge">★ La más potente</div>
-          <div class="card-icon">03</div>
-          <h3>Recordatorios automáticos por WhatsApp</h3>
-          <p>Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante.</p>
+          <div class="card-badge">Autom&#225;tico</div>
+          <div class="card-icon">01</div>
+          <h3>Recordatorios autom&#225;ticos por WhatsApp</h3>
+          <p>Kn&#246;a env&#237;a el recordatorio antes de la cita y recoge la confirmaci&#243;n sin que tengas que escribir, llamar ni perseguir a nadie.</p>
         </div>
         <div class="wa-demo">
-          <div class="wa-b in">Tu cita con <strong>Laura</strong> el martes a las 09:00h &#9986;&#65039; ¿Confirmas?</div>
-          <div class="wa-btns-demo"><div class="wa-btn-demo">✓ Sí, confirmo</div><div class="wa-btn-demo">✕ Cancelar</div></div>
-          <div class="wa-b">¡Perfecto! Hasta el martes</div>
+          <div class="wa-b in">Tu cita con <strong>Laura</strong> el martes a las 09:00h. &#191;Confirmas?</div>
+          <div class="wa-btns-demo"><div class="wa-btn-demo">&#10003; S&#237;, confirmo</div><div class="wa-btn-demo">&#10005; Cancelar</div></div>
+          <div class="wa-b">&#161;Perfecto! Hasta el martes &#128522;</div>
         </div>
       </div>
-      <div class="card"><div class="card-icon">04</div><h3>Reserva online</h3><p>Comparte tu enlace y tus clientes eligen fecha y hora por su cuenta. Tú decides si confirmas o se confirma automáticamente.</p></div>
-      <div class="card"><div class="card-icon">05</div><h3>Depósito anticipado</h3><p>Si lo activas, el cliente paga antes de confirmar. Sin pago, sin cita. El hueco solo se bloquea cuando hay compromiso real.</p></div>
-      <div class="card"><div class="card-icon">06</div><h3>Estadísticas claras</h3><p>Ingresos, ocupación, servicios más populares, clientes más fieles. Todo calculado automáticamente.</p></div>
-      <div class="card"><div class="card-icon">07</div><h3>Funciona sin internet</h3><p>Si se va la conexión, sigues trabajando. Las citas se guardan y se sincronizan cuando vuelve la señal.</p></div>
-      <div class="card"><div class="card-icon">08</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu móvil, en dos toques, Knöa se instala en tu pantalla de inicio.</p></div>
+      <div class="card"><div class="card-icon">02</div><div class="card-badge" style="background:rgba(105,76,208,0.1);color:var(--purple)">Alerta</div><h3>Clientes con m&#225;s riesgo, detectados antes</h3><p>Kn&#246;a detecta patrones de cancelaci&#243;n o no asistencia y te avisa antes de confirmar una cita que puede acabar vac&#237;a.</p></div>
+      <div class="card"><div class="card-icon">03</div><div class="card-badge" style="background:rgba(105,76,208,0.1);color:var(--purple)">Visi&#243;n general</div><h3>La agenda clara, al momento</h3><p>Ve el d&#237;a, la semana o el mes de un vistazo. Mueve citas, detecta huecos y ten claro qu&#233; est&#225; confirmado y qu&#233; no.</p></div>
+      <div class="card"><div class="card-icon">04</div><div class="card-badge" style="background:rgba(105,76,208,0.1);color:var(--purple)">Opcional</div><h3>Reserva online y dep&#243;sito, si lo necesitas</h3><p>Comparte tu enlace para que reserven solos y activa dep&#243;sito anticipado solo cuando tenga sentido. Sin pago, no se bloquea el hueco.</p></div>
+      <div class="card"><div class="card-icon">05</div><h3>Historial de clientes</h3><p>Historial completo y comportamiento pasado para saber siempre con qui&#233;n est&#225;s trabajando.</p></div>
+      <div class="card"><div class="card-icon">06</div><h3>Estad&#237;sticas claras</h3><p>Ingresos, ocupaci&#243;n, servicios m&#225;s populares, clientes m&#225;s fieles. Todo calculado autom&#225;ticamente.</p></div>
+      <div class="card"><div class="card-icon">07</div><h3>Funciona sin internet</h3><p>Si se va la conexi&#243;n, sigues trabajando. Las citas se guardan y se sincronizan cuando vuelve la se&#241;al.</p></div>
+      <div class="card"><div class="card-icon">08</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu m&#243;vil, en dos toques, Kn&#246;a se instala en tu pantalla de inicio.</p></div>
     </div>
   </div>
 </section>
