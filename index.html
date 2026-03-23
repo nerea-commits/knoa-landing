@@ -235,14 +235,14 @@ nav {
 
 /* ── CONTACTO ── */
 .contacto { padding: 6rem 4rem; background: var(--cream); border-top: 1px solid rgba(52,31,96,0.08); width: 100%; }
-.contacto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contacto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
 .contacto-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--violet); line-height: 1.1; margin-bottom: 1rem; }
 .contacto-p { font-size: 0.95rem; color: var(--violet); opacity: 0.6; line-height: 1.7; margin-bottom: 2rem; }
-.contacto-dato { display: flex; flex-direction: column; gap: 0.9rem; }
-.contacto-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.contacto-dato { display: flex; flex-direction: column; gap: 0rem; }
+.contacto-item { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(52,31,96,0.08); }
+.contacto-item:first-child { border-top: 1px solid rgba(52,31,96,0.08); }
 .contacto-item-label { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); }
-.contacto-item-val { font-size: 0.95rem; color: var(--violet); text-decoration: none; border-bottom: 1px solid rgba(52,31,96,0.12); padding-bottom: 0.75rem; }
-.contacto-item-val:hover { color: var(--purple); border-color: var(--purple); }
+.contacto-item-val { font-size: 0.95rem; color: var(--violet); text-decoration: none; }
 .contacto-nota { margin-top: 1.5rem; font-size: 0.82rem; color: var(--violet); opacity: 0.45; line-height: 1.6; font-family: 'Syne', sans-serif; }
 
 /* ── FOOTER ── */
@@ -501,7 +501,7 @@ footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
     <div>
       <div class="label label-dark">Contacto</div>
       <h2 class="contacto-h2">&#191;Tienes dudas antes de empezar?</h2>
-      <p class="contacto-p">Si quieres ver c&#243;mo encaja Kn&#246;a en tu negocio, pedir una demo o tienes dudas sobre el plan a medida, escr&#237;benos.</p>
+      <p class="contacto-p">Si quieres ver c&#243;mo encaja Kn&#246;a en tu negocio, necesitas una demo o tienes dudas sobre el plan a medida, escr&#237;benos.</p>
       <p class="contacto-nota">Para negocios con equipo o integraciones espec&#237;ficas, cu&#233;ntanos tu caso.</p>
     </div>
     <div class="contacto-dato">
