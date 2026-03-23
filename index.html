@@ -8,20 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script>
-function toggleMobileMenu() {
-  var menu = document.getElementById('mobileMenu');
-  var btn = document.getElementById('hamburger');
-  if (!menu || !btn) return;
-  menu.classList.toggle('open');
-  btn.classList.toggle('open');
-  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+function toggleMenu() {
+  var m = document.getElementById('mob');
+  var b = document.getElementById('hbg');
+  m.classList.toggle('open');
+  b.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
-function closeMobileMenu() {
-  var menu = document.getElementById('mobileMenu');
-  var btn = document.getElementById('hamburger');
-  if (!menu || !btn) return;
-  menu.classList.remove('open');
-  btn.classList.remove('open');
+function closeMenu() {
+  document.getElementById('mob').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
   document.body.style.overflow = '';
 }
 </script>
@@ -34,489 +30,454 @@ function closeMobileMenu() {
   --cream: #FFF9EF;
   --dark: #1a0f30;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--violet); overflow-x: hidden; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--violet); overflow-x: hidden; width: 100%; }
+img, video { max-width: 100%; }
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(255,249,239,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(105,76,208,0.1); }
-.nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--violet); text-decoration: none; }
-.nav-logo span { color: var(--purple); }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(255,249,239,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(105,76,208,0.1);
+}
+.logo { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--violet); text-decoration: none; }
+.logo span { color: var(--purple); }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-.nav-links a { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--violet); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+.nav-links a { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--violet); text-decoration: none; opacity: 0.7; }
 .nav-links a:hover { opacity: 1; }
-.nav-cta { background: var(--violet); color: var(--cream) !important; padding: 0.6rem 1.4rem; border-radius: 100px; opacity: 1 !important; }
-.nav-cta:hover { background: var(--purple) !important; }
-.nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; cursor: pointer; background: none; border: none; padding: 6px; position: relative; z-index: 9999; }
-.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--violet); border-radius: 2px; transition: all 0.3s; }
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 5000; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
-.nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--violet); text-decoration: none; transition: color 0.2s; }
-.nav-mobile-menu a:hover { color: var(--purple); }
-.nav-mobile-cta { background: var(--violet) !important; color: var(--cream) !important; font-family: 'Syne', sans-serif !important; font-size: 1rem !important; font-weight: 700 !important; padding: 1rem 2.5rem !important; border-radius: 100px !important; margin-top: 0.5rem; }
+.nav-cta { background: var(--violet) !important; color: var(--cream) !important; padding: 0.6rem 1.4rem !important; border-radius: 100px; opacity: 1 !important; }
 
-/* HERO */
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; gap: 4rem; }
-.hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--lavender); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; }
-.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; }
-.hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; color: var(--violet); margin-bottom: 1.5rem; }
-.hero-headline em { font-style: italic; color: var(--purple); }
-.hero-sub { font-size: 1.1rem; line-height: 1.7; color: var(--violet); opacity: 0.65; max-width: 480px; margin-bottom: 2.5rem; }
-.hero-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-.btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--violet); color: var(--cream); font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; box-shadow: 0 8px 32px rgba(52,31,96,0.25); transition: all 0.25s; }
-.btn-primary:hover { background: var(--purple); transform: translateY(-2px); }
-.btn-secondary { color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
-.hero-trust { margin-top: 2.5rem; display: flex; align-items: center; gap: 1rem; font-size: 0.8rem; color: var(--violet); opacity: 0.5; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-.hero-trust-divider { width: 24px; height: 1px; background: currentColor; }
+/* hamburger */
+.hbg { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 6px; }
+.hbg span { display: block; width: 24px; height: 2px; background: var(--violet); border-radius: 2px; transition: all 0.3s; }
+.hbg.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hbg.open span:nth-child(2) { opacity: 0; }
+.hbg.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* MOCKUP */
-.hero-visual { position: relative; }
-.mockup-card { background: white; border-radius: 20px; box-shadow: 0 30px 80px rgba(52,31,96,0.18); padding: 1.5rem; position: relative; overflow: hidden; }
-.mockup-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--purple), var(--yellow)); }
-.mockup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
-.mockup-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--violet); letter-spacing: 0.05em; text-transform: uppercase; }
-.mockup-date { font-size: 0.75rem; color: var(--violet); opacity: 0.4; }
-.mockup-appointments { display: flex; flex-direction: column; gap: 0.6rem; }
-.appt { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 12px; background: var(--cream); }
-.appt-time { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--violet); opacity: 0.5; width: 38px; flex-shrink: 0; }
-.appt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.appt-dot.confirmed { background: #22c55e; }
-.appt-dot.warning { background: var(--yellow); }
-.appt-dot.danger { background: #ef4444; }
-.appt-info { flex: 1; }
-.appt-name { font-size: 0.82rem; font-weight: 500; color: var(--violet); margin-bottom: 0.1rem; }
-.appt-service { font-size: 0.7rem; color: var(--violet); opacity: 0.45; }
-.appt-badge { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; }
-.badge-ok { background: rgba(34,197,94,0.12); color: #16a34a; }
-.badge-warn { background: rgba(244,206,69,0.25); color: #92400e; }
-.badge-risk { background: rgba(239,68,68,0.1); color: #dc2626; }
-.mockup-alert { margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(244,206,69,0.2); border: 1px solid rgba(244,206,69,0.6); border-radius: 10px; display: flex; align-items: flex-start; gap: 0.6rem; }
-.mockup-alert-text { font-size: 0.75rem; color: var(--violet); line-height: 1.4; }
-.mockup-alert-text strong { display: block; font-weight: 600; margin-bottom: 0.1rem; }
-.floating-wa { position: absolute; bottom: -20px; right: -20px; background: #25D366; border-radius: 16px; padding: 1rem 1.25rem; box-shadow: 0 10px 40px rgba(37,211,102,0.3); max-width: 220px; }
-.wa-from { font-family: 'Syne', sans-serif; font-size: 0.7rem; color: white; font-weight: 600; margin-bottom: 0.4rem; }
-.wa-msg { font-size: 0.75rem; color: rgba(255,255,255,0.9); line-height: 1.4; margin-bottom: 0.5rem; }
-.wa-btns { display: flex; gap: 0.4rem; }
-.wa-btn { flex: 1; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 0.65rem; font-weight: 700; font-family: 'Syne', sans-serif; padding: 0.3rem; border-radius: 6px; text-align: center; text-transform: uppercase; letter-spacing: 0.04em; }
+/* mobile menu */
+.mob {
+  display: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--cream); z-index: 300;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+.mob.open { display: flex; }
+.mob a { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--violet); text-decoration: none; }
+.mob-cta { background: var(--violet) !important; color: var(--cream) !important; font-family: 'Syne', sans-serif !important; font-size: 1rem !important; font-weight: 700 !important; padding: 1rem 2.5rem !important; border-radius: 100px !important; }
+.mob-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--violet); line-height: 1; }
 
-/* SECTION LABEL */
-.section-label { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-.section-label::before { content: ''; width: 24px; height: 2px; background: currentColor; }
-.section-label.dark { color: var(--purple); }
-
-/* PAIN */
-.pain { background: var(--violet); padding: 6rem 4rem; }
-.pain-inner { max-width: 1100px; margin: 0 auto; }
-.pain-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; color: var(--cream); margin-bottom: 3.5rem; max-width: 650px; }
-.pain-headline em { color: var(--lavender); font-style: italic; }
-.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.pain-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
-.pain-item:hover { background: rgba(105,76,208,0.25); transform: translateY(-4px); }
-.pain-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; display: block; line-height: 1; }
-.pain-item h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 0.75rem; }
-.pain-item p { font-size: 0.875rem; color: rgba(255,249,239,0.55); line-height: 1.6; }
-
-/* HOWTO */
-.howto { padding: 7rem 4rem; background: var(--cream); }
-.howto-inner { max-width: 1100px; margin: 0 auto; }
-.howto-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 5rem; }
-.howto-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; color: var(--violet); }
-.howto-headline em { font-style: italic; color: var(--purple); }
-.howto-desc { font-size: 1rem; color: var(--violet); opacity: 0.6; line-height: 1.7; padding-top: 1rem; }
-
-/* FEATURES — lista editorial */
-.features-grid { display: flex; flex-direction: column; }
-
-.feature-card {
-  display: grid;
-  grid-template-columns: 6rem 1fr auto;
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 3rem;
-  padding: 2.5rem 0;
-  border-top: 1px solid rgba(52,31,96,0.1);
-  cursor: default;
-  transition: all 0.2s;
+  padding: 8rem 4rem 4rem; gap: 4rem;
 }
-.feature-card:last-child { border-bottom: 1px solid rgba(52,31,96,0.1); }
-.feature-card:hover { padding-left: 1rem; }
+.hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--lavender); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; }
+.hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; flex-shrink: 0; }
+.hero-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; color: var(--violet); margin-bottom: 1.5rem; }
+.hero-h1 em { font-style: italic; color: var(--purple); }
+.hero-p { font-size: 1.1rem; line-height: 1.7; color: var(--violet); opacity: 0.65; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.btn-dark { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--violet); color: var(--cream); font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; box-shadow: 0 8px 32px rgba(52,31,96,0.25); transition: all 0.25s; }
+.btn-dark:hover { background: var(--purple); transform: translateY(-2px); }
+.btn-link { color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+.hero-trust { margin-top: 2.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.78rem; color: var(--violet); opacity: 0.5; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; flex-wrap: wrap; }
+.trust-sep { width: 20px; height: 1px; background: currentColor; flex-shrink: 0; }
 
-.feature-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 3rem;
-  font-style: italic;
-  color: var(--violet);
-  opacity: 0.12;
-  line-height: 1;
-  text-align: right;
-  transition: opacity 0.2s, color 0.2s;
-}
-.feature-card:hover .feature-num { opacity: 0.6; color: var(--purple); }
+/* mockup */
+.hero-visual { position: relative; width: 100%; }
+.mockup { background: white; border-radius: 20px; box-shadow: 0 30px 80px rgba(52,31,96,0.18); padding: 1.5rem; position: relative; overflow: hidden; width: 100%; }
+.mockup::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--purple), var(--yellow)); }
+.mockup-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+.mockup-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--violet); letter-spacing: 0.05em; text-transform: uppercase; }
+.mockup-sub { font-size: 0.75rem; color: var(--violet); opacity: 0.4; }
+.appts { display: flex; flex-direction: column; gap: 0.6rem; }
+.appt { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; border-radius: 12px; background: var(--cream); }
+.appt-t { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--violet); opacity: 0.5; width: 36px; flex-shrink: 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot.g { background: #22c55e; }
+.dot.y { background: var(--yellow); }
+.dot.r { background: #ef4444; }
+.appt-info { flex: 1; min-width: 0; }
+.appt-name { font-size: 0.82rem; font-weight: 500; color: var(--violet); }
+.appt-svc { font-size: 0.7rem; color: var(--violet); opacity: 0.45; }
+.badge { font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.badge.ok { background: rgba(34,197,94,0.12); color: #16a34a; }
+.badge.warn { background: rgba(244,206,69,0.25); color: #92400e; }
+.badge.risk { background: rgba(239,68,68,0.1); color: #dc2626; }
+.mockup-alert { margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(244,206,69,0.2); border: 1px solid rgba(244,206,69,0.6); border-radius: 10px; display: flex; align-items: flex-start; gap: 0.6rem; }
+.mockup-alert p { font-size: 0.75rem; color: var(--violet); line-height: 1.4; }
+.mockup-alert strong { display: block; font-weight: 600; }
+.wa-float { margin-top: 1rem; background: #25D366; border-radius: 16px; padding: 1rem 1.25rem; }
+.wa-float-from { font-family: 'Syne', sans-serif; font-size: 0.7rem; color: white; font-weight: 600; margin-bottom: 0.4rem; }
+.wa-float-msg { font-size: 0.75rem; color: rgba(255,255,255,0.9); line-height: 1.4; margin-bottom: 0.5rem; }
+.wa-float-btns { display: flex; gap: 0.4rem; }
+.wa-float-btn { flex: 1; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; font-size: 0.65rem; font-weight: 700; font-family: 'Syne', sans-serif; padding: 0.3rem; border-radius: 6px; text-align: center; text-transform: uppercase; }
 
-.feature-card-body { flex: 1; }
+/* ── SECTION LABEL ── */
+.label { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.label::before { content: ''; width: 24px; height: 2px; background: currentColor; flex-shrink: 0; }
+.label-light { color: var(--yellow); }
+.label-dark { color: var(--purple); }
 
-.feature-card-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  color: var(--violet);
-  line-height: 1.15;
-  margin-bottom: 0.5rem;
-  transition: color 0.2s;
-}
-.feature-card:hover .feature-card-title { color: var(--purple); }
+/* ── PAIN ── */
+.pain { background: var(--violet); padding: 6rem 4rem; width: 100%; }
+.pain-inner { max-width: 1100px; margin: 0 auto; }
+.pain-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 3.5rem); line-height: 1.1; color: var(--cream); margin-bottom: 3.5rem; }
+.pain-h2 em { color: var(--lavender); font-style: italic; }
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.pain-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+.pain-card:hover { background: rgba(105,76,208,0.25); transform: translateY(-4px); }
+.pain-n { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; display: block; line-height: 1; }
+.pain-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--cream); margin-bottom: 0.75rem; }
+.pain-card p { font-size: 0.875rem; color: rgba(255,249,239,0.55); line-height: 1.6; }
 
-.feature-card-text {
-  font-size: 0.95rem;
-  color: var(--violet);
-  opacity: 0.5;
-  line-height: 1.7;
-  max-width: 520px;
-}
+/* ── FEATURES ── */
+.features { padding: 7rem 4rem; background: var(--cream); width: 100%; }
+.features-inner { max-width: 1100px; margin: 0 auto; }
+.features-hd { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.features-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; color: var(--violet); }
+.features-h2 em { font-style: italic; color: var(--purple); }
+.features-desc { font-size: 1rem; color: var(--violet); opacity: 0.6; line-height: 1.7; }
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+.card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid rgba(52,31,96,0.06); box-shadow: 0 4px 24px rgba(52,31,96,0.06); transition: all 0.3s; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(52,31,96,0.12); }
+.card-icon { width: 48px; height: 48px; background: var(--lavender); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+.card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--violet); margin-bottom: 0.6rem; line-height: 1.2; }
+.card p { font-size: 0.875rem; color: var(--violet); opacity: 0.6; line-height: 1.65; }
+.card-highlight { background: var(--violet); border-color: transparent; grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.card-highlight:hover { transform: translateY(-4px); }
+.card-highlight .card-icon { background: rgba(105,76,208,0.4); }
+.card-highlight h3 { color: var(--cream); }
+.card-highlight p { color: var(--lavender); opacity: 0.85; }
+.card-badge { display: inline-block; background: rgba(244,206,69,0.25); color: var(--yellow); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; padding: 0.2rem 0.7rem; border-radius: 100px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.wa-demo { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.wa-b { padding: 0.6rem 0.9rem; font-size: 0.8rem; color: #1a1a1a; max-width: 85%; line-height: 1.4; border-radius: 12px 12px 4px 12px; background: #DCF8C6; align-self: flex-end; }
+.wa-b.in { background: white; border-radius: 12px 12px 12px 4px; align-self: flex-start; }
+.wa-btns-demo { display: flex; gap: 0.4rem; }
+.wa-btn-demo { flex: 1; background: white; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 0.4rem; font-size: 0.7rem; font-weight: 600; color: #128C7E; text-align: center; font-family: 'Syne', sans-serif; }
 
-.feature-card-tag {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--purple);
-  background: var(--lavender);
-  padding: 0.35rem 0.9rem;
-  border-radius: 100px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* STATS */
-.stats { background: var(--yellow); padding: 3.5rem 4rem; }
+/* ── STATS ── */
+.stats { background: var(--yellow); padding: 3.5rem 4rem; width: 100%; }
 .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-.stat-num { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--violet); line-height: 1; margin-bottom: 0.4rem; }
-.stat-label { font-size: 0.82rem; color: var(--violet); opacity: 0.65; line-height: 1.4; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.stat-n { font-family: 'DM Serif Display', serif; font-size: 3rem; color: var(--violet); line-height: 1; margin-bottom: 0.4rem; }
+.stat-l { font-size: 0.82rem; color: var(--violet); opacity: 0.65; line-height: 1.4; font-family: 'Syne', sans-serif; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 
-/* PRICING */
-.pricing { padding: 7rem 4rem; background: white; }
+/* ── PRICING ── */
+.pricing { padding: 7rem 4rem; background: white; width: 100%; }
 .pricing-inner { max-width: 1100px; margin: 0 auto; }
-.pricing-header { text-align: center; margin-bottom: 4rem; }
-.pricing-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--violet); margin-bottom: 1rem; line-height: 1.1; }
-.pricing-headline em { font-style: italic; color: var(--purple); }
+.pricing-hd { text-align: center; margin-bottom: 4rem; }
+.pricing-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--violet); margin-bottom: 1rem; line-height: 1.1; }
+.pricing-h2 em { font-style: italic; color: var(--purple); }
 .pricing-sub { font-size: 1rem; color: var(--violet); opacity: 0.55; max-width: 500px; margin: 0 auto; line-height: 1.6; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
-.plan-card { border-radius: 24px; padding: 2.5rem; border: 2px solid rgba(52,31,96,0.08); background: var(--cream); position: relative; transition: all 0.3s; }
-.plan-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(52,31,96,0.12); }
-.plan-card.featured { background: var(--violet); border-color: var(--violet); transform: scale(1.03); }
-.plan-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
+.plan { border-radius: 24px; padding: 2.5rem; border: 2px solid rgba(52,31,96,0.08); background: var(--cream); position: relative; transition: all 0.3s; }
+.plan:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(52,31,96,0.12); }
+.plan.top { background: var(--violet); border-color: var(--violet); transform: scale(1.03); }
+.plan.top:hover { transform: scale(1.03) translateY(-6px); }
 .plan-pill { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--yellow); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 100px; white-space: nowrap; }
 .plan-name { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.5rem; }
-.featured .plan-name { color: var(--lavender); }
+.top .plan-name { color: var(--lavender); }
 .plan-price { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--violet); line-height: 1; margin-bottom: 0.25rem; }
-.featured .plan-price { color: var(--cream); }
+.top .plan-price { color: var(--cream); }
 .plan-price sup { font-size: 1.5rem; vertical-align: super; font-family: 'Syne', sans-serif; font-weight: 600; }
-.plan-price-note { font-size: 0.8rem; color: var(--violet); opacity: 0.5; margin-bottom: 1.5rem; font-family: 'Syne', sans-serif; }
-.featured .plan-price-note { color: var(--lavender); opacity: 0.6; }
-.plan-custom-price { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--violet); margin-bottom: 0.25rem; line-height: 1.3; }
-.plan-divider { border: none; border-top: 1px solid rgba(52,31,96,0.08); margin: 1.5rem 0; }
-.featured .plan-divider { border-color: rgba(255,255,255,0.15); }
+.plan-note { font-size: 0.8rem; color: var(--violet); opacity: 0.5; margin-bottom: 1.5rem; font-family: 'Syne', sans-serif; }
+.top .plan-note { color: var(--lavender); opacity: 0.6; }
+.plan-custom { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--violet); margin-bottom: 0.25rem; line-height: 1.3; }
+.plan-hr { border: none; border-top: 1px solid rgba(52,31,96,0.08); margin: 1.5rem 0; }
+.top .plan-hr { border-color: rgba(255,255,255,0.15); }
 .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2rem; }
 .plan-features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.83rem; color: var(--violet); opacity: 0.8; line-height: 1.4; }
-.featured .plan-features li { color: var(--lavender); opacity: 0.85; }
+.top .plan-features li { color: var(--lavender); opacity: 0.85; }
 .plan-features li::before { content: '✓'; color: var(--purple); font-weight: 700; flex-shrink: 0; }
-.featured .plan-features li::before { color: var(--yellow); }
+.top .plan-features li::before { color: var(--yellow); }
 .plan-trial { text-align: center; font-size: 0.75rem; color: var(--violet); opacity: 0.45; margin-top: 0.75rem; font-family: 'Syne', sans-serif; font-weight: 600; }
-.featured .plan-trial { color: var(--lavender); opacity: 0.5; }
-.btn-plan { width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9rem 1.5rem; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
-.btn-plan-outline { background: transparent; border: 2px solid rgba(52,31,96,0.2); color: var(--violet); }
-.btn-plan-outline:hover { border-color: var(--violet); }
-.btn-plan-primary { background: var(--yellow); color: var(--violet); box-shadow: 0 4px 20px rgba(244,206,69,0.4); }
-.btn-plan-primary:hover { transform: translateY(-2px); }
-.btn-plan-dark { background: var(--violet); color: var(--cream); }
-.btn-plan-dark:hover { background: var(--purple); transform: translateY(-2px); }
+.top .plan-trial { color: var(--lavender); opacity: 0.5; }
+.btn-plan { width: 100%; display: flex; align-items: center; justify-content: center; padding: 0.9rem 1.5rem; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+.btn-outline { background: transparent; border: 2px solid rgba(52,31,96,0.2); color: var(--violet); }
+.btn-outline:hover { border-color: var(--violet); }
+.btn-yellow { background: var(--yellow); color: var(--violet); box-shadow: 0 4px 20px rgba(244,206,69,0.4); }
+.btn-yellow:hover { transform: translateY(-2px); }
+.btn-vio { background: var(--violet); color: var(--cream); }
+.btn-vio:hover { background: var(--purple); transform: translateY(-2px); }
 
-/* TESTIMONIALS */
-.testimonials { padding: 7rem 4rem; background: var(--cream); }
-.testimonials-inner { max-width: 1100px; margin: 0 auto; }
-.testimonials-header { text-align: center; margin-bottom: 4rem; }
-.testimonials-headline { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--violet); line-height: 1.1; }
-.testimonials-headline em { font-style: italic; color: var(--purple); }
-.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+/* ── TESTIMONIALS ── */
+.testi { padding: 7rem 4rem; background: var(--cream); width: 100%; }
+.testi-inner { max-width: 1100px; margin: 0 auto; }
+.testi-hd { text-align: center; margin-bottom: 4rem; }
+.testi-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--violet); line-height: 1.1; }
+.testi-h2 em { font-style: italic; color: var(--purple); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .testi-card { background: white; border-radius: 20px; padding: 2rem; border: 1px solid rgba(52,31,96,0.06); box-shadow: 0 4px 20px rgba(52,31,96,0.05); transition: all 0.3s; }
 .testi-card:hover { transform: translateY(-4px); }
 .testi-stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 1rem; }
-.testi-text { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--violet); line-height: 1.5; margin-bottom: 1.5rem; font-style: italic; }
+.testi-text { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--violet); line-height: 1.5; margin-bottom: 1.5rem; font-style: italic; }
 .testi-author { display: flex; align-items: center; gap: 0.75rem; }
-.testi-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-.testi-name { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--violet); margin-bottom: 0.1rem; }
+.testi-av { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.testi-name { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--violet); }
 .testi-job { font-size: 0.75rem; color: var(--violet); opacity: 0.45; }
 
-/* CTA */
-.cta-final { background: var(--violet); padding: 7rem 4rem; text-align: center; position: relative; overflow: hidden; }
-.cta-final::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: rgba(105,76,208,0.4); bottom: -200px; right: -100px; pointer-events: none; }
-.cta-final-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
-.cta-final h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--cream); line-height: 1.05; margin-bottom: 1.5rem; }
-.cta-final h2 em { font-style: italic; color: var(--yellow); }
-.cta-final p { font-size: 1.05rem; color: var(--lavender); margin-bottom: 2.5rem; line-height: 1.6; }
-.btn-cta-yellow { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--yellow); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; padding: 1.1rem 2.5rem; border-radius: 100px; text-decoration: none; box-shadow: 0 8px 32px rgba(244,206,69,0.35); transition: all 0.25s; }
-.btn-cta-yellow:hover { transform: translateY(-3px); }
+/* ── CTA ── */
+.cta { background: var(--violet); padding: 7rem 4rem; text-align: center; position: relative; overflow: hidden; width: 100%; }
+.cta::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: rgba(105,76,208,0.4); bottom: -200px; right: -100px; pointer-events: none; }
+.cta-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+.cta-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--cream); line-height: 1.05; margin-bottom: 1.5rem; }
+.cta-h2 em { font-style: italic; color: var(--yellow); }
+.cta-p { font-size: 1.05rem; color: var(--lavender); margin-bottom: 2.5rem; line-height: 1.6; }
+.btn-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--yellow); color: var(--violet); font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; padding: 1.1rem 2.5rem; border-radius: 100px; text-decoration: none; box-shadow: 0 8px 32px rgba(244,206,69,0.35); transition: all 0.25s; }
+.btn-cta:hover { transform: translateY(-3px); }
 .cta-note { font-size: 0.8rem; color: var(--lavender); opacity: 0.5; margin-top: 1.5rem; font-family: 'Syne', sans-serif; }
 
-/* FOOTER */
-footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-.footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--cream); opacity: 0.7; }
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); opacity: 0.35; text-decoration: none; transition: opacity 0.2s; }
-.footer-links a:hover { opacity: 0.7; }
-.footer-copy { font-size: 0.75rem; color: var(--cream); opacity: 0.25; font-family: 'Syne', sans-serif; }
+/* ── FOOTER ── */
+footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; width: 100%; }
+.foot-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--cream); opacity: 0.7; }
+.foot-links { display: flex; gap: 2rem; }
+.foot-links a { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); opacity: 0.35; text-decoration: none; }
+.foot-links a:hover { opacity: 0.7; }
+.foot-copy { font-size: 0.75rem; color: var(--cream); opacity: 0.25; font-family: 'Syne', sans-serif; }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  html, body { overflow-x: hidden; max-width: 100vw; }
-  nav { padding: 1rem 1.5rem; }
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
   .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; min-height: auto; }
-  .hero-headline { font-size: clamp(2rem, 8vw, 3rem); }
-  .hero-sub { max-width: 100%; font-size: 1rem; }
+  .hbg { display: flex; }
+
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.25rem 3rem; gap: 2.5rem; min-height: auto; }
+  .hero-h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+  .hero-p { font-size: 0.95rem; }
   .hero-tag { font-size: 0.65rem; }
-  .hero-trust { flex-wrap: wrap; gap: 0.5rem; font-size: 0.7rem; }
-  .hero-visual { overflow: visible; }
-  .floating-wa { position: relative; bottom: auto; right: auto; margin-top: 1rem; max-width: 100%; }
-  .pain { padding: 4rem 1.5rem; }
+
+  .pain { padding: 4rem 1.25rem; }
   .pain-grid { grid-template-columns: 1fr; }
-  .howto { padding: 4rem 1.5rem; }
-  .howto-header { grid-template-columns: 1fr; gap: 1rem; }
-  .features-grid { grid-template-columns: 1fr; }
-  .feature-card.highlighted { grid-column: auto; display: block; }
-  .feature-card.highlighted .feature-visual { margin-top: 1.5rem; }
-  .stats { padding: 3rem 1.5rem; }
-  .stats-inner { grid-template-columns: repeat(2, 1fr); }
-  .pricing { padding: 4rem 1.5rem; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .plan-card.featured { transform: none; }
-  .testimonials { padding: 4rem 1.5rem; }
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .cta-final { padding: 5rem 1.5rem; }
-  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-  .footer-links { justify-content: center; }
+
+  .features { padding: 4rem 1.25rem; }
+  .features-hd { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+  .cards { grid-template-columns: 1fr; }
+  .card-highlight { grid-column: auto; display: block; }
+  .card-highlight .wa-demo { margin-top: 1.5rem; }
+
+  .stats { padding: 3rem 1.25rem; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  .pricing { padding: 4rem 1.25rem; }
+  .plans { grid-template-columns: 1fr; }
+  .plan.top { transform: none; }
+  .plan.top:hover { transform: translateY(-6px); }
+
+  .testi { padding: 4rem 1.25rem; }
+  .testi-grid { grid-template-columns: 1fr; }
+
+  .cta { padding: 5rem 1.25rem; }
+
+  footer { padding: 2rem 1.25rem; flex-direction: column; text-align: center; }
+  .foot-links { justify-content: center; flex-wrap: wrap; }
 }
 </style>
 </head>
 <body>
 
-<div class="nav-mobile-menu" id="mobileMenu">
-  <button onclick="closeMobileMenu()" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--violet);line-height:1;">✕</button>
-  <a href="#como-funciona" onclick="closeMobileMenu()">Cómo funciona</a>
-  <a href="#precios" onclick="closeMobileMenu()">Precios</a>
-  <a href="https://slotify-v2-vxnx.vercel.app/register" class="nav-mobile-cta" onclick="closeMobileMenu()">Empezar gratis →</a>
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <button class="mob-close" onclick="closeMenu()">✕</button>
+  <a href="#como-funciona" onclick="closeMenu()">Cómo funciona</a>
+  <a href="#precios" onclick="closeMenu()">Precios</a>
+  <a href="#precios" class="mob-cta" onclick="closeMenu()">Empezar gratis →</a>
 </div>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Kn<span>ö</span>a</a>
+  <a href="#" class="logo">Kn<span>ö</span>a</a>
   <ul class="nav-links">
     <li><a href="#como-funciona">Cómo funciona</a></li>
     <li><a href="#precios">Precios</a></li>
-    <li><a href="https://slotify-v2-vxnx.vercel.app/register" class="nav-cta">Empezar gratis →</a></li>
+    <li><a href="#precios" class="nav-cta">Empezar gratis →</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()">
+  <button class="hbg" id="hbg" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div>
     <div class="hero-tag">Para autónomos y pequeños negocios</div>
-    <h1 class="hero-headline">Que no te fallen<br>cuando ya no puedes<br><em>reaccionar.</em></h1>
-    <p class="hero-sub">Knöa confirma citas por WhatsApp, detecta riesgo y te avisa a tiempo para que no pierdas huecos que ya no puedes rellenar. Tu agenda trabaja mientras tú trabajas.</p>
-    <div class="hero-actions">
-      <a href="https://slotify-v2-vxnx.vercel.app/register" class="btn-primary">Empieza gratis 14 días <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#como-funciona" class="btn-secondary">Ver cómo funciona →</a>
+    <h1 class="hero-h1">Que no te fallen<br>cuando ya no puedes<br><em>reaccionar.</em></h1>
+    <p class="hero-p">Knöa confirma citas por WhatsApp, detecta clientes con más riesgo de cancelar y te avisa con tiempo para que no pierdas huecos difíciles de recuperar.</p>
+    <div class="hero-btns">
+      <a href="#precios" class="btn-dark">Empieza gratis 14 días <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#como-funciona" class="btn-link">Ver cómo funciona →</a>
     </div>
     <div class="hero-trust">
-      <span>Sin tarjeta</span><span class="hero-trust-divider"></span>
-      <span>Sin instalación</span><span class="hero-trust-divider"></span>
+      <span>Sin tarjeta</span><span class="trust-sep"></span>
+      <span>Sin instalación</span><span class="trust-sep"></span>
       <span>Desde el primer día</span>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="mockup-card">
-      <div class="mockup-header">
+    <div class="mockup">
+      <div class="mockup-hd">
         <span class="mockup-title">Hoy · Martes 18</span>
-        <span class="mockup-date">6 citas</span>
+        <span class="mockup-sub">6 citas</span>
       </div>
-      <div class="mockup-appointments">
-        <div class="appt"><span class="appt-time">09:00</span><span class="appt-dot confirmed"></span><div class="appt-info"><div class="appt-name">Laura Martínez</div><div class="appt-service">Corte + Color · 90 min</div></div><span class="appt-badge badge-ok">Confirmado</span></div>
-        <div class="appt"><span class="appt-time">11:00</span><span class="appt-dot warning"></span><div class="appt-info"><div class="appt-name">Carlos Ruiz</div><div class="appt-service">Fisio · 60 min</div></div><span class="appt-badge badge-warn">Sin confirmar</span></div>
-        <div class="appt"><span class="appt-time">13:30</span><span class="appt-dot danger"></span><div class="appt-info"><div class="appt-name">Ana González</div><div class="appt-service">Tatuaje · 120 min</div></div><span class="appt-badge badge-risk">⚠ Riesgo</span></div>
-        <div class="appt"><span class="appt-time">16:00</span><span class="appt-dot confirmed"></span><div class="appt-info"><div class="appt-name">Pedro Sanz</div><div class="appt-service">Entrenamiento · 45 min</div></div><span class="appt-badge badge-ok">Confirmado</span></div>
+      <div class="appts">
+        <div class="appt"><span class="appt-t">09:00</span><span class="dot g"></span><div class="appt-info"><div class="appt-name">Laura Martínez</div><div class="appt-svc">Corte + Color · 90 min</div></div><span class="badge ok">Confirmado</span></div>
+        <div class="appt"><span class="appt-t">11:00</span><span class="dot y"></span><div class="appt-info"><div class="appt-name">Carlos Ruiz</div><div class="appt-svc">Fisio · 60 min</div></div><span class="badge warn">Sin confirmar</span></div>
+        <div class="appt"><span class="appt-t">13:30</span><span class="dot r"></span><div class="appt-info"><div class="appt-name">Ana González</div><div class="appt-svc">Tatuaje · 120 min</div></div><span class="badge risk">⚠ Riesgo</span></div>
+        <div class="appt"><span class="appt-t">16:00</span><span class="dot g"></span><div class="appt-info"><div class="appt-name">Pedro Sanz</div><div class="appt-svc">Entrenamiento · 45 min</div></div><span class="badge ok">Confirmado</span></div>
       </div>
       <div class="mockup-alert">
         <span>⚠️</span>
-        <div class="mockup-alert-text"><strong>Ana González — historial de riesgo</strong>3 cancelaciones en los últimos 2 meses. Knöa ya le ha enviado recordatorio.</div>
+        <p><strong>Ana González — historial de riesgo</strong>3 cancelaciones en los últimos 2 meses.</p>
       </div>
     </div>
-    <div class="floating-wa">
-      <div class="wa-from">💬 Knöa · WhatsApp</div>
-      <p class="wa-msg">Hola Ana 👋 Te recordamos tu cita mañana a las 13:30h. ¿Confirmas asistencia?</p>
-      <div class="wa-btns"><div class="wa-btn">✓ Confirmar</div><div class="wa-btn">✕ Cancelar</div></div>
+    <div class="wa-float">
+      <div class="wa-float-from">💬 Knöa · WhatsApp</div>
+      <p class="wa-float-msg">Hola Ana 👋 Te recordamos tu cita mañana a las 13:30h. ¿Confirmas asistencia?</p>
+      <div class="wa-float-btns"><div class="wa-float-btn">✓ Confirmar</div><div class="wa-float-btn">✕ Cancelar</div></div>
     </div>
   </div>
 </section>
 
+<!-- PAIN -->
 <section class="pain" id="dolor">
   <div class="pain-inner">
-    <div class="section-label">El problema</div>
-    <h2 class="pain-headline">Cada hueco vacío es dinero directo<br>a la basura. Y el tiempo<br><em>no se recupera.</em></h2>
+    <div class="label label-light">El problema</div>
+    <h2 class="pain-h2">Cada hueco vacío es dinero directo<br>a la basura. Y el tiempo<br><em>no se recupera.</em></h2>
     <div class="pain-grid">
-      <div class="pain-item"><span class="pain-num">01</span><h3>El no-show que no avisó</h3><p>El cliente no aparece, el hueco queda vacío y ya no hay tiempo para rellenarlo. Dinero perdido, irrecuperable. Knöa lo detecta antes de que pase.</p></div>
-      <div class="pain-item"><span class="pain-num">02</span><h3>La agenda en cuatro sitios</h3><p>Excel, papel, WhatsApp, Google Calendar. Todo desconectado, todo manual, siempre algo que se te escapa. Knöa centraliza todo en un solo lugar.</p></div>
-      <div class="pain-item"><span class="pain-num">03</span><h3>Tiempo perdido en gestión</h3><p>Cada WhatsApp para confirmar, cada llamada para recordar horario. Todo eso es tiempo que no cobras. Knöa lo automatiza para que funcione solo.</p></div>
-      <div class="pain-item"><span class="pain-num">04</span><h3>No sabes cómo va el negocio</h3><p>¿Cuánto has ingresado este mes? ¿Qué servicio es más rentable? ¿Qué clientes son los más fieles? Knöa lo calcula y lo presenta de forma clara.</p></div>
-      <div class="pain-item"><span class="pain-num">05</span><h3>Los clientes problemáticos</h3><p>Todos los negocios tienen clientes que cancelan siempre en el último momento. Knöa los identifica y te avisa antes de que confirmes la cita.</p></div>
-      <div class="pain-item"><span class="pain-num">06</span><h3>Sin reserva online</h3><p>Tus clientes llaman, escriben por WhatsApp a las 11 de la noche para pedir cita. Knöa les da un enlace donde se agendan solos, cuando quieran.</p></div>
+      <div class="pain-card"><span class="pain-n">01</span><h3>El no-show que no avisó</h3><p>El cliente no aparece, el hueco queda vacío y ya no hay tiempo para rellenarlo. Knöa lo detecta antes de que pase.</p></div>
+      <div class="pain-card"><span class="pain-n">02</span><h3>La agenda en cuatro sitios</h3><p>Excel, papel, WhatsApp, Google Calendar. Todo desconectado. Knöa centraliza todo en un solo lugar.</p></div>
+      <div class="pain-card"><span class="pain-n">03</span><h3>Tiempo perdido en gestión</h3><p>Cada WhatsApp para confirmar, cada llamada para recordar. Todo eso es tiempo que no cobras. Knöa lo automatiza.</p></div>
+      <div class="pain-card"><span class="pain-n">04</span><h3>No sabes cómo va el negocio</h3><p>¿Cuánto has ingresado? ¿Qué servicio es más rentable? Knöa lo calcula y lo presenta de forma clara.</p></div>
+      <div class="pain-card"><span class="pain-n">05</span><h3>Los clientes problemáticos</h3><p>Todos los negocios tienen clientes que cancelan siempre en el último momento. Knöa los identifica y te avisa.</p></div>
+      <div class="pain-card"><span class="pain-n">06</span><h3>Sin reserva online</h3><p>Tus clientes escriben a las 11 de la noche para pedir cita. Knöa les da un enlace donde se agendan solos.</p></div>
     </div>
   </div>
 </section>
 
-<section class="howto" id="como-funciona">
-  <div class="howto-inner">
-    <div class="howto-header">
+<!-- FEATURES -->
+<section class="features" id="como-funciona">
+  <div class="features-inner">
+    <div class="features-hd">
       <div>
-        <div class="section-label dark">Qué hace Knöa</div>
-        <h2 class="howto-headline">Todo en un sitio.<br>Todo <em>automático.</em></h2>
+        <div class="label label-dark">Qué hace Knöa</div>
+        <h2 class="features-h2">Todo en un sitio.<br>Todo <em>automático.</em></h2>
       </div>
-      <p class="howto-desc">No es otro software complejo. Es la herramienta que trabaja por ti para que tú solo tengas que hacer tu trabajo.</p>
+      <p class="features-desc">No es otro software complejo. Es la herramienta que trabaja por ti para que tú solo tengas que hacer tu trabajo.</p>
     </div>
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <span class="feature-num">01</span>
-        <div class="feature-card-body">
-          <div class="feature-card-title">Recordatorios automáticos por WhatsApp</div>
-          <div class="feature-card-text">Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante. Sin llamadas, sin perseguir a nadie.</div>
+    <div class="cards">
+      <div class="card"><div class="card-icon">📅</div><h3>Agenda inteligente</h3><p>Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Crea nuevas en segundos desde el móvil o el ordenador.</p></div>
+      <div class="card"><div class="card-icon">👥</div><h3>Historial de clientes</h3><p>Historial completo, comportamiento pasado y alertas automáticas si un cliente tiene tendencia a no aparecer.</p></div>
+      <div class="card card-highlight">
+        <div>
+          <div class="card-badge">★ La más potente</div>
+          <div class="card-icon">💬</div>
+          <h3>Recordatorios automáticos por WhatsApp</h3>
+          <p>Tu cliente recibe un mensaje antes de su cita y confirma con una respuesta. Tú lo ves en tu agenda al instante.</p>
         </div>
-        <span class="feature-card-tag">El diferencial</span>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-num">02</span>
-        <div class="feature-card-body">
-          <div class="feature-card-title">Detección de clientes de riesgo</div>
-          <div class="feature-card-text">Knöa analiza el historial de cada cliente y te avisa antes de confirmar una cita con alguien que tiene tendencia a no aparecer. Lo sabes antes de que sea tarde.</div>
+        <div class="wa-demo">
+          <div class="wa-b in">Tu cita con <strong>Laura</strong> el martes a las 09:00h ✂️ ¿Confirmas?</div>
+          <div class="wa-btns-demo"><div class="wa-btn-demo">✓ Sí, confirmo</div><div class="wa-btn-demo">✕ Cancelar</div></div>
+          <div class="wa-b">¡Perfecto! Hasta el martes 😊</div>
         </div>
-        <span class="feature-card-tag">Solo en Knöa</span>
       </div>
-
-      <div class="feature-card">
-        <span class="feature-num">03</span>
-        <div class="feature-card-body">
-          <div class="feature-card-title">Agenda inteligente en tiempo real</div>
-          <div class="feature-card-text">Ve tu día, semana o mes de un vistazo. Mueve citas arrastrándolas. Funciona desde el móvil, la tablet o el ordenador. Y sin internet si hace falta.</div>
-        </div>
-        <span class="feature-card-tag">El núcleo</span>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-num">04</span>
-        <div class="feature-card-body">
-          <div class="feature-card-title">Reserva online y depósito anticipado</div>
-          <div class="feature-card-text">Comparte tu enlace y tus clientes se agendan solos. Activa el depósito anticipado y el hueco solo se bloquea cuando hay compromiso real. Sin pago, sin cita.</div>
-        </div>
-        <span class="feature-card-tag">Opcional</span>
-      </div>
-
+      <div class="card"><div class="card-icon">🔗</div><h3>Reserva online</h3><p>Comparte tu enlace y tus clientes eligen fecha y hora por su cuenta. Tú decides si confirmas o se confirma automáticamente.</p></div>
+      <div class="card"><div class="card-icon">💳</div><h3>Depósito anticipado</h3><p>Si lo activas, el cliente paga antes de confirmar. Sin pago, sin cita. El hueco solo se bloquea cuando hay compromiso real.</p></div>
+      <div class="card"><div class="card-icon">📈</div><h3>Estadísticas claras</h3><p>Ingresos, ocupación, servicios más populares, clientes más fieles. Todo calculado automáticamente.</p></div>
+      <div class="card"><div class="card-icon">📶</div><h3>Funciona sin internet</h3><p>Si se va la conexión, sigues trabajando. Las citas se guardan y se sincronizan cuando vuelve la señal.</p></div>
+      <div class="card"><div class="card-icon">📲</div><h3>Se instala como app</h3><p>Sin App Store ni Play Store. Desde el navegador de tu móvil, en dos toques, Knöa se instala en tu pantalla de inicio.</p></div>
     </div>
   </div>
 </section>
 
+<!-- STATS -->
 <section class="stats">
   <div class="stats-inner">
-    <div><div class="stat-num">87%</div><div class="stat-label">de no-shows evitados con recordatorio WhatsApp</div></div>
-    <div><div class="stat-num">3h</div><div class="stat-label">de media ahorradas a la semana en gestión</div></div>
-    <div><div class="stat-num">14</div><div class="stat-label">días de prueba gratis, sin tarjeta</div></div>
-    <div><div class="stat-num">1 día</div><div class="stat-label">para configurarlo y empezar a usarlo</div></div>
+    <div><div class="stat-n">87%</div><div class="stat-l">de no-shows evitados con recordatorio WhatsApp</div></div>
+    <div><div class="stat-n">3h</div><div class="stat-l">de media ahorradas a la semana en gestión</div></div>
+    <div><div class="stat-n">14</div><div class="stat-l">días de prueba gratis, sin tarjeta</div></div>
+    <div><div class="stat-n">1 día</div><div class="stat-l">para configurarlo y empezar a usarlo</div></div>
   </div>
 </section>
 
+<!-- PRICING -->
 <section class="pricing" id="precios">
   <div class="pricing-inner">
-    <div class="pricing-header">
-      <div class="section-label dark" style="justify-content:center">Precios</div>
-      <h2 class="pricing-headline">Simple, <em>sin sorpresas.</em></h2>
+    <div class="pricing-hd">
+      <div class="label label-dark" style="justify-content:center">Precios</div>
+      <h2 class="pricing-h2">Simple, <em>sin sorpresas.</em></h2>
       <p class="pricing-sub">14 días gratis en todos los planes. Sin tarjeta de crédito. Cancela cuando quieras.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="plan-card">
+    <div class="plans">
+      <div class="plan">
         <div class="plan-name">Plan Solo</div>
         <div class="plan-price"><sup>€</sup>29<span style="font-size:1.5rem">.99</span></div>
-        <div class="plan-price-note">/mes · IVA no incluido</div>
-        <hr class="plan-divider">
+        <div class="plan-note">/mes · IVA no incluido</div>
+        <hr class="plan-hr">
         <ul class="plan-features">
-          <li>1 profesional</li><li>Agenda completa (día, semana, mes)</li><li>Gestión de citas — crear, editar, cancelar</li><li>Historial de clientes con fiabilidad</li><li>Recordatorios WhatsApp con botones</li><li>500 mensajes incluidos (exceso a 0.05€/msg)</li><li>Reserva online activable</li><li>Depósito anticipado activable</li><li>Estadísticas</li><li>Funciona sin internet</li><li>Soporte estándar</li>
+          <li>1 profesional</li><li>Agenda completa (día, semana, mes)</li><li>Gestión de citas — crear, editar, cancelar</li><li>Historial de clientes con fiabilidad</li><li>Recordatorios WhatsApp con botones</li><li>500 mensajes incluidos (exceso 0.05€/msg)</li><li>Reserva online activable</li><li>Depósito anticipado activable</li><li>Estadísticas · Funciona sin internet</li><li>Soporte estándar</li>
         </ul>
-        <a href="https://slotify-v2-vxnx.vercel.app/register" class="btn-plan btn-plan-outline">Empezar gratis →</a>
+        <a href="#" class="btn-plan btn-outline">Empezar gratis →</a>
         <div class="plan-trial">14 días gratis · Sin tarjeta</div>
       </div>
-      <div class="plan-card featured">
+      <div class="plan top">
         <div class="plan-pill">⭐ Más popular</div>
         <div class="plan-name">Plan Equipo</div>
         <div class="plan-price"><sup>€</sup>59<span style="font-size:1.5rem">.99</span></div>
-        <div class="plan-price-note">/mes · IVA no incluido</div>
-        <hr class="plan-divider">
+        <div class="plan-note">/mes · IVA no incluido</div>
+        <hr class="plan-hr">
         <ul class="plan-features">
-          <li>Profesionales ilimitados</li><li>Todo lo del Plan Solo</li><li>Vista de agenda por equipo</li><li>Estadísticas avanzadas por profesional</li><li>1.500 mensajes incluidos (exceso a 0.04€)</li><li>Importación de servicios por CSV</li><li>Gestión de ausencias</li><li>Soporte prioritario</li>
+          <li>Profesionales ilimitados</li><li>Todo lo del Plan Solo</li><li>Vista de agenda por equipo</li><li>Estadísticas avanzadas por profesional</li><li>1.500 mensajes incluidos (exceso 0.04€)</li><li>Importación de servicios por CSV</li><li>Gestión de ausencias</li><li>Soporte prioritario</li>
         </ul>
-        <a href="https://slotify-v2-vxnx.vercel.app/register" class="btn-plan btn-plan-primary">Empezar gratis →</a>
+        <a href="#" class="btn-plan btn-yellow">Empezar gratis →</a>
         <div class="plan-trial">14 días gratis · Sin tarjeta</div>
       </div>
-      <div class="plan-card">
+      <div class="plan">
         <div class="plan-name">A Medida</div>
-        <div class="plan-custom-price">Para cadenas<br>y negocios<br>específicos</div>
-        <div class="plan-price-note">Precio según necesidades</div>
-        <hr class="plan-divider">
+        <div class="plan-custom">Para cadenas<br>y negocios<br>específicos</div>
+        <div class="plan-note">Precio según necesidades</div>
+        <hr class="plan-hr">
         <ul class="plan-features">
-          <li>Todo lo del Plan Equipo</li><li>Integración API con software externo</li><li>Volumen de mensajes negociable</li><li>Onboarding personalizado</li><li>Soporte dedicado</li><li>SLA garantizado</li>
+          <li>Todo lo del Plan Equipo</li><li>Integración API con software externo</li><li>Volumen de mensajes negociable</li><li>Onboarding personalizado</li><li>Soporte dedicado · SLA garantizado</li>
         </ul>
-        <a href="/cdn-cgi/l/email-protection#98f0f7f4f9d8f3f6f7f9b6f9e8e8" class="btn-plan btn-plan-dark">Hablamos →</a>
+        <a href="/cdn-cgi/l/email-protection#e1898e8d80a18a8f8e80cf809191" class="btn-plan btn-vio">Hablamos →</a>
         <div class="plan-trial">Cuéntanos qué necesitas</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="testimonials">
-  <div class="testimonials-inner">
-    <div class="testimonials-header">
-      <div class="section-label dark" style="justify-content:center">Opiniones</div>
-      <h2 class="testimonials-headline">Lo que dicen los que ya<br><em>no pierden citas.</em></h2>
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-hd">
+      <div class="label label-dark" style="justify-content:center">Opiniones</div>
+      <h2 class="testi-h2">Lo que dicen los que ya<br><em>no pierden citas.</em></h2>
     </div>
-    <div class="testimonials-grid">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Antes perdía una o dos citas a la semana sin aviso. Desde que uso Knöa, en dos meses solo he tenido un no-show. El recordatorio por WhatsApp marca la diferencia."</p><div class="testi-author"><div class="testi-avatar" style="background:#E1C3FF">✂️</div><div><div class="testi-name">Sara López</div><div class="testi-job">Peluquera · Barcelona</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"La alerta de clientes problemáticos es lo que más me gusta. Ahora sé de antemano si voy a tener un problema con alguien antes de confirmar la cita."</p><div class="testi-author"><div class="testi-avatar" style="background:#F4CE45">🖊️</div><div><div class="testi-name">Marco Díaz</div><div class="testi-job">Tatuador · Madrid</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Me llevó menos de una hora configurarlo todo. Mis pacientes reciben el recordatorio automático y confirman solos. Yo no tengo que llamar a nadie."</p><div class="testi-author"><div class="testi-avatar" style="background:#E1C3FF">💆</div><div><div class="testi-name">Nuria Fernández</div><div class="testi-job">Fisioterapeuta · Valencia</div></div></div></div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Antes perdía una o dos citas a la semana sin aviso. Desde que uso Knöa, en dos meses solo he tenido un no-show."</p><div class="testi-author"><div class="testi-av" style="background:#E1C3FF">✂️</div><div><div class="testi-name">Sara López</div><div class="testi-job">Peluquera · Barcelona</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"La alerta de clientes problemáticos es lo que más me gusta. Ahora sé de antemano si voy a tener un problema."</p><div class="testi-author"><div class="testi-av" style="background:#F4CE45">🖊️</div><div><div class="testi-name">Marco Díaz</div><div class="testi-job">Tatuador · Madrid</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Me llevó menos de una hora configurarlo. Mis pacientes confirman solos. Yo no tengo que llamar a nadie."</p><div class="testi-author"><div class="testi-av" style="background:#E1C3FF">💆</div><div><div class="testi-name">Nuria Fernández</div><div class="testi-job">Fisioterapeuta · Valencia</div></div></div></div>
     </div>
   </div>
 </section>
 
-<section class="cta-final">
-  <div class="cta-final-inner">
-    <h2>Tu agenda avisa,<br>antes de que sea<br><em>demasiado tarde.</em></h2>
-    <p>14 días gratis. Sin tarjeta. Configurado en menos de un día. Sin formación. Sin complicaciones. Solo tú y una agenda que trabaja por ti.</p>
-    <a href="https://slotify-v2-vxnx.vercel.app/register" class="btn-cta-yellow">Empieza gratis ahora <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="cta-h2">Tu agenda avisa,<br>antes de que sea<br><em>demasiado tarde.</em></h2>
+    <p class="cta-p">14 días gratis. Sin tarjeta. Configurado en menos de un día. Sin formación. Sin complicaciones.</p>
+    <a href="#precios" class="btn-cta">Empieza gratis ahora <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <div class="cta-note">Sin tarjeta · Sin instalación · Sin compromiso · 14 días gratis</div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Knöa</div>
-  <div class="footer-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Contacto</a></div>
-  <div class="footer-copy">© 2025 Knöa. Hecho para autónomos de verdad.</div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function toggleMobileMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.getElementById('hamburger').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  document.getElementById('mobileMenu').classList.re
+  <div class="foot-logo">Knöa</div>
+  <div class="foot-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Contacto</a></div>
+  <div class="foot-copy">© 2025 Knöa. Hecho para autónomos de verda
