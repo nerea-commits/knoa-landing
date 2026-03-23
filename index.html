@@ -233,13 +233,28 @@ nav {
 .btn-cta:hover { transform: translateY(-3px); }
 .cta-note { font-size: 0.8rem; color: var(--lavender); opacity: 0.5; margin-top: 1.5rem; font-family: 'Syne', sans-serif; }
 
+/* ── CONTACTO ── */
+.contacto { padding: 6rem 4rem; background: var(--cream); border-top: 1px solid rgba(52,31,96,0.08); width: 100%; }
+.contacto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contacto-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--violet); line-height: 1.1; margin-bottom: 1rem; }
+.contacto-p { font-size: 0.95rem; color: var(--violet); opacity: 0.6; line-height: 1.7; margin-bottom: 2rem; }
+.contacto-dato { display: flex; flex-direction: column; gap: 0.9rem; }
+.contacto-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.contacto-item-label { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); }
+.contacto-item-val { font-size: 0.95rem; color: var(--violet); text-decoration: none; border-bottom: 1px solid rgba(52,31,96,0.12); padding-bottom: 0.75rem; }
+.contacto-item-val:hover { color: var(--purple); border-color: var(--purple); }
+.contacto-nota { margin-top: 1.5rem; font-size: 0.82rem; color: var(--violet); opacity: 0.45; line-height: 1.6; font-family: 'Syne', sans-serif; }
+
 /* ── FOOTER ── */
-footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; width: 100%; }
+footer { background: var(--dark); padding: 2.5rem 4rem; width: 100%; }
+.foot-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .foot-logo { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--cream); opacity: 0.7; }
-.foot-links { display: flex; gap: 2rem; }
-.foot-links a { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); opacity: 0.35; text-decoration: none; }
+.foot-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.foot-links a { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); opacity: 0.35; text-decoration: none; transition: opacity 0.2s; }
 .foot-links a:hover { opacity: 0.7; }
-.foot-copy { font-size: 0.75rem; color: var(--cream); opacity: 0.25; font-family: 'Syne', sans-serif; }
+.foot-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.foot-copy { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: 'Syne', sans-serif; }
+.foot-legal { font-size: 0.72rem; color: var(--cream); opacity: 0.2; font-family: 'Syne', sans-serif; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
@@ -274,8 +289,12 @@ footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items
 
   .cta { padding: 5rem 1.25rem; }
 
-  footer { padding: 2rem 1.25rem; flex-direction: column; text-align: center; }
-  .foot-links { justify-content: center; flex-wrap: wrap; }
+  .contacto { padding: 4rem 1.25rem; }
+  .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+  footer { padding: 2rem 1.25rem; }
+  .foot-top { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .foot-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .foot-links { justify-content: flex-start; }
 }
 </style>
 </head>
@@ -476,8 +495,48 @@ footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items
   </div>
 </section>
 
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="contacto-inner">
+    <div>
+      <div class="label label-dark">Contacto</div>
+      <h2 class="contacto-h2">¿Tienes alguna duda?</h2>
+      <p class="contacto-p">Si quieres saber más sobre el producto, necesitas una demo o tienes preguntas sobre el plan a medida, escríbenos. Respondemos en menos de 24 horas.</p>
+      <p class="contacto-nota">Para negocios con equipo o integraciones específicas, escríbenos indicando tu caso y te respondemos con lo que necesitas saber.</p>
+    </div>
+    <div class="contacto-dato">
+      <div class="contacto-item">
+        <span class="contacto-item-label">Email</span>
+        <a href="mailto:hola@helloknoa.com" class="contacto-item-val">hola@helloknoa.com</a>
+      </div>
+      <div class="contacto-item">
+        <span class="contacto-item-label">Teléfono</span>
+        <a href="tel:+34600000000" class="contacto-item-val">[+34 600 000 000]</a>
+      </div>
+      <div class="contacto-item">
+        <span class="contacto-item-label">Demos y consultas comerciales</span>
+        <a href="mailto:hola@helloknoa.com?subject=Demo Knöa" class="contacto-item-val">hola@helloknoa.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
-  <div class="foot-logo">Knöa</div>
-  <div class="foot-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Contacto</a></div>
-  <div class="foot-copy">© 2025 Knöa. Hecho para autónomos de verda
+  <div class="foot-top">
+    <div class="foot-logo">Knöa</div>
+    <div class="foot-links">
+      <a href="#">Privacidad</a>
+      <a href="#">Términos</a>
+      <a href="#">Cookies</a>
+      <a href="#">Aviso legal</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span class="foot-copy">© 2025 Knöa — [Nombre empresa], [CIF]. Todos los derechos reservados.</span>
+    <span class="foot-legal">hola@helloknoa.com</span>
+  </div>
+</footer>
+</body>
+</html>
