@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--violet); overflow-x: hidden; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(255,249,239,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(105,76,208,0.1); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9000; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(255,249,239,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(105,76,208,0.1); }
 .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--violet); text-decoration: none; }
 .nav-logo span { color: var(--purple); }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
@@ -29,15 +29,16 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 .nav-links a:hover { opacity: 1; }
 .nav-cta { background: var(--violet); color: var(--cream) !important; padding: 0.6rem 1.4rem; border-radius: 100px; opacity: 1 !important; }
 .nav-cta:hover { background: var(--purple) !important; }
-.nav-hamburger { display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 4px; }
-.nav-hamburger span { display: block; width: 100%; height: 2px; background: var(--violet); border-radius: 2px; transition: all 0.3s; }
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; cursor: pointer; background: none; border: none; padding: 6px; position: relative; z-index: 9999; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--violet); border-radius: 2px; transition: all 0.3s; }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.nav-mobile-menu { display: none; position: fixed; inset: 0; background: var(--cream); z-index: 90; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+.nav-mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 5000; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
 .nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--violet); text-decoration: none; }
-.nav-mobile-cta { background: var(--violet) !important; color: var(--cream) !important; font-family: 'Syne', sans-serif !important; font-size: 1rem !important; font-weight: 700 !important; padding: 1rem 2.5rem !important; border-radius: 100px !important; }
+.nav-mobile-menu a { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: var(--violet); text-decoration: none; transition: color 0.2s; }
+.nav-mobile-menu a:hover { color: var(--purple); }
+.nav-mobile-cta { background: var(--violet) !important; color: var(--cream) !important; font-family: 'Syne', sans-serif !important; font-size: 1rem !important; font-weight: 700 !important; padding: 1rem 2.5rem !important; border-radius: 100px !important; margin-top: 0.5rem; }
 
 /* HERO */
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; gap: 4rem; }
@@ -280,6 +281,7 @@ footer { background: var(--dark); padding: 3rem 4rem; display: flex; align-items
 <body>
 
 <div class="nav-mobile-menu" id="mobileMenu">
+  <button onclick="closeMobileMenu()" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;font-size:2rem;cursor:pointer;color:var(--violet);line-height:1;">✕</button>
   <a href="#como-funciona" onclick="closeMobileMenu()">Cómo funciona</a>
   <a href="#precios" onclick="closeMobileMenu()">Precios</a>
   <a href="https://slotify-v2-vxnx.vercel.app/register" class="nav-mobile-cta" onclick="closeMobileMenu()">Empezar gratis →</a>
